@@ -1,0 +1,5 @@
+#!/bin/bash
+
+docker create -v $HOME/exps:/host/exps -v $HOME/data:/host/data \
+    -p 12000:8888 -p 12001:6006 \
+    -h docker-tf11 -it --name tf11 fbcotter/tensorflow /bin/bash -l

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# For use with docker machine, e.g. on windows
+
+docker-machine create -d virtualbox --virtualbox-memory "10000" --virtualbox-cpu-count "4" --virtualbox-disk-size "20000" deepvm
