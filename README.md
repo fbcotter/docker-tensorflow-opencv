@@ -1,8 +1,8 @@
 # docker-tensorflow-opencv
-Automated Build for Tensorflow Docker Containter with OpenCV 3.3.
+Automated Build for Tensorflow Docker Containter with OpenCV 3.4.1
 
 If you just want to use opencv with python, I suggest looking at the repo by
-![janza](https://github.com/janza/docker-python3-opencv). I have based my
+[janza](https://github.com/janza/docker-python3-opencv). I have based my
 Dockerfile off his, just using a different base to have tensorflow working with
 GPU support.
 
