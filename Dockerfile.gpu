@@ -1,7 +1,8 @@
 ## Dockerfile to build opencv from sources with CUDA support
 ## Based on Josip Janzic file and Thomas Herbin's work
 
-FROM nvidia/cuda:9.0-devel
+# FROM nvidia/cuda:9.0-devel
+FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
 MAINTAINER Fergal Cotter <fbc23@cam.ac.uk>
 
 ###########################
@@ -27,8 +28,8 @@ RUN apt-get install -y \
     libjasper-dev libavformat-dev libpq-dev libxine2-dev libglew-dev \
     libtiff5-dev zlib1g-dev libjpeg-dev libpng12-dev libjasper-dev \
     libavcodec-dev libavformat-dev libavutil-dev libpostproc-dev \
-	libswscale-dev libeigen3-dev libtbb-dev libgtk2.0-dev \
-    libcudnn7=7.1.4.18-1+cuda9.0 
+	libswscale-dev libeigen3-dev libtbb-dev libgtk2.0-dev 
+    # libcudnn7=7.1.4.18-1+cuda9.0 
 
 RUN apt-get install -y \
     python3-dev \
@@ -57,12 +58,12 @@ ENV LD_LIBRARY_PATH /usr/local/cuda/extras/CUPTI/lib64:/usr/local/cuda/lib64:$LD
 ########################
 
 ARG OPENCV_VERSION=3.4.1
-ARG OPENCV_INSTALL_PATH=/opencv/usr
+# ARG OPENCV_INSTALL_PATH=/usr/local
 
 ## Create install directory
 ## Force success as the only reason for a fail is if it exist
 
-RUN mkdir -p $OPENCV_INSTALL_PATH; exit 0
+# RUN mkdir -p $OPENCV_INSTALL_PATH; exit 0
 
 WORKDIR /
 
@@ -107,7 +108,7 @@ RUN wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip \
        -DBUILD_TESTS=OFF \
        -DBUILD_PERF_TESTS=OFF \
        -DCMAKE_BUILD_TYPE=RELEASE \
-       -DCMAKE_INSTALL_PREFIX=$OPENCV_INSTALL_PATH \
+       # -DCMAKE_INSTALL_PREFIX=$OPENCV_INSTALL_PATH \
     .. \
     ##
     ## Add variable to enable make to use all cores
@@ -118,4 +119,5 @@ RUN wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip \
     && rm -r /opencv-$OPENCV_VERSION
 
 ## Compress the openCV files so you can extract them from the docker easily 
-RUN tar cvzf opencv-$OPENCV_VERSION.tar.gz --directory=$OPENCV_INSTALL_PATH .
+# RUN tar cvzf opencv-$OPENCV_VERSION.tar.gz --directory=$OPENCV_INSTALL_PATH .
+WORKDIR /home
