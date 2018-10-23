@@ -1,4 +1,5 @@
 # docker-tensorflow-opencv
+[![Docker Automated buil](https://img.shields.io/docker/automated/fbcotter/docker-tensorflow-opencv.svg)]()
 Automated Build for Tensorflow Docker Containter with OpenCV 3.4.1
 
 If you just want to use opencv with python, I suggest looking at the repo by
